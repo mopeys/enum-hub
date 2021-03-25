@@ -61,12 +61,3 @@ export default class EnumHub {
     }
   }
 }
-
-// Example
-// import * as service from 'src/components/page/claimInvestigation/service';
-// export const eh = new EnumHub({
-//     fetchRemote: async name => {
-//         return await fetch(`/api/enum/${name}`);
-//     },
-// });
-// await eh.getEnum('XX');
