@@ -1,0 +1,23 @@
+{
+  "name": "@mopeys/enum-hub",
+  "version": "0.0.1",
+  "main": "./dist/enum-hub.umd.js",
+  "module": "./dist/enum-hub.esm.js",
+  "browser": "./dist/enum-hub.umd.js",
+  "repository": "git@github.com:mopeys/enum-hub.git",
+  "author": "mike.zhu <512122313@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.12",
+    "cross-env": "^7.0.3",
+    "rollup": "^2.42.4",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-uglify": "^6.0.4"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "dev": "rollup -c -w"
+  }
+}
