@@ -1,5 +1,5 @@
 import babel from "rollup-plugin-babel";
-import { uglify } from "rollup-plugin-uglify";
+// import { uglify } from "rollup-plugin-uglify";
 import pkg from "./package.json";
 export default {
   input: "src/index.js",
@@ -18,6 +18,6 @@ export default {
     babel({
       exclude: "node_modules/**",
     }),
-    process.env.NODE_ENV === "production" ? uglify() : null,
+    // process.env.NODE_ENV === "production" ? uglify() : null,
   ],
 };
