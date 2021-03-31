@@ -25,14 +25,11 @@ export default class EnumHub {
   }
   // 获取枚举
   async getEnum(name, fetchRemote) {
-    // console.log(this);
     if (!name) throw new Error("[EnumHub]: getEnum需要传入name参数");
-    if (this[enums][name]) {
-      return this[enums][name];
-    } else {
-      await this[runFetchRemote](name, fetchRemote);
-      return this[enums][name];
+    if (!this[enums][name]) {
+      return await this[runFetchRemote](name, fetchRemote);
     }
+    return this[enums][name];
   }
 
   // 私有执行fetchRemote函数并缓存枚举结果
@@ -43,21 +40,31 @@ export default class EnumHub {
     if (!this.fetchingNames[name]) {
       this.fetchingNames[name] = [];
     } else {
-      let rsv = null;
-      const p = new Promise((resolve) => (rsv = resolve));
-      this.fetchingNames[name].push(rsv);
-      return await p;
+      return new Promise((rsv, rej) =>
+        this.fetchingNames[name].push({ rsv, rej })
+      );
     }
     try {
       const en = await f(name);
-      this[enums][name] = en;
-      this.fetchingNames[name].forEach((rsv) => rsv());
-      this.fetchingNames[name] = null;
+      this.fetchingNames[name].forEach(({ rsv }) => rsv(en));
+      return (this[enums][name] = en);
     } catch (error) {
-      this[enums][name] = [];
-      console.error(`[EnumHub] - ${name}: ${error}`);
-      // Q: 失败后是否需要触发所有的promise reject
-      // throw new Eerror(`[EnumHub]: ${error}`);
+      this.fetchingNames[name].forEach(({ rej }) => rej(error));
+      this[enums][name] = null;
+      throw new Eerror(`[EnumHub] - ${name}: ${error}`);
+    } finally {
+      this.fetchingNames[name] = null;
     }
   }
 }
+
+// async function s() {
+//   const a = await 222;
+//   const b = await Promise.resolve(2);
+//   const d = Promise.resolve(2);
+//   const c = await new Promise((res, rej) => {
+//     setTimeout(res, 2000);
+//   });
+//   return a && b && c && d;
+// }
+// s();
