@@ -1,6 +1,6 @@
 {
   "name": "@mopeys/enum-hub",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./dist/enum-hub.cjs.js",
   "module": "./dist/enum-hub.esm.js",
   "browser": "./dist/enum-hub.umd.js",
