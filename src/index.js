@@ -51,20 +51,9 @@ export default class EnumHub {
     } catch (error) {
       this.fetchingNames[name].forEach(({ rej }) => rej(error));
       this[enums][name] = null;
-      throw new Eerror(`[EnumHub] - ${name}: ${error}`);
+      throw new Error(`[EnumHub] - ${name}: ${error}`);
     } finally {
       this.fetchingNames[name] = null;
     }
   }
 }
-
-// async function s() {
-//   const a = await 222;
-//   const b = await Promise.resolve(2);
-//   const d = Promise.resolve(2);
-//   const c = await new Promise((res, rej) => {
-//     setTimeout(res, 2000);
-//   });
-//   return a && b && c && d;
-// }
-// s();
