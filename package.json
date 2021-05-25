@@ -13,19 +13,16 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.13.10",
-    "@babel/plugin-proposal-class-properties": "^7.13.0",
-    "@babel/plugin-transform-modules-commonjs": "^7.13.8",
     "@babel/plugin-transform-runtime": "^7.13.10",
     "@babel/preset-env": "^7.13.12",
-    "@babel/runtime": "^7.13.10",
     "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-html": "^0.2.3",
     "@rollup/plugin-node-resolve": "^11.2.1",
     "cross-env": "^7.0.3",
     "jest": "^26.6.3",
-    "rollup": "^2.42.4",
-    "rollup-plugin-serve": "^1.1.0",
-    "rollup-plugin-uglify": "^6.0.4"
+    "rollup": "^2.42.4"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.14.0"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
