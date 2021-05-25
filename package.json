@@ -1,6 +1,6 @@
 {
   "name": "@mopeys/enum-hub",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./dist/enum-hub.cjs.js",
   "module": "./dist/enum-hub.esm.js",
   "repository": "git@github.com:mopeys/enum-hub.git",
