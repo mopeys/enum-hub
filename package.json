@@ -16,6 +16,7 @@
     "@babel/preset-env": "^7.13.12",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
+    "babel-jest": "^26.6.3",
     "cross-env": "^7.0.3",
     "jest": "^26.6.3",
     "rollup": "^2.42.4"
@@ -25,6 +26,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
-    "dev": "rollup -c -w"
+    "dev": "cross-env NODE_ENV=development rollup -c -w",
+    "test": "cross-env NODE_ENV=test jest _test_/** --watch"
   }
 }
