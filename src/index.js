@@ -27,7 +27,9 @@ export default class EnumHub {
     max, // 缓存最大个数
   } = {}) {
     // 私有枚举集合
-    this[enums] = createProxy(new LRUCache(max));
+    this[enums] = Number(max)
+      ? createProxy(new LRUCache(max))
+      : Object.create(null);
     this[check](fetchRemote);
     this.fetchRemote = fetchRemote;
   }
