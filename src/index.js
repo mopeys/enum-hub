@@ -26,9 +26,10 @@ export default class EnumHub {
     fetchRemote = null, // 获取枚举的远程请求函数
     max, // 缓存最大个数
   } = {}) {
+    const maxNum = Number(max);
     // 私有枚举集合
-    this[enums] = Number(max)
-      ? createProxy(new LRUCache(max))
+    this[enums] = typeof maxNum === 'number'
+      ? createProxy(new LRUCache(maxNum))
       : Object.create(null);
     this[check](fetchRemote);
     this.fetchRemote = fetchRemote;

@@ -8,7 +8,7 @@ class LinkedNode {
 
 export default class LRUCache {
   constructor(size) {
-    this.max = Number(size) || Number.MAX_SAFE_INTEGER;
+    this.max = typeof size === 'number' ? Number(size) : Number.MAX_SAFE_INTEGER;
     this.nodes = Object.create(null);
     this.head = new LinkedNode();
     this.tail = new LinkedNode();
